@@ -23,7 +23,7 @@ docsearch = Pinecone.from_existing_index(index_name, embeddings_model)
 app = Flask(__name__)
 CORS(app) 
 
-@app.route('/get-response', methods=['POST']):
+@app.route('/get-response', methods=['POST'])
 def get_response():
     data = request.json
     question = data.get('question')
