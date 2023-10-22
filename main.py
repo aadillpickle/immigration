@@ -52,4 +52,5 @@ def get_response_from_question(query, messages=[]):
     return response.choices[0].text
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    PORT = int(os.environ.get('PORT', 5000))
+    app.run(host="0.0.0.0", port=PORT, debug=True)
