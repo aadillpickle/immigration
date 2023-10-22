@@ -46,11 +46,10 @@ def get_response_from_question(query, messages=[]):
     prompt = f"You are an expert on customs and immigration policies in the united states. Your job is to assist people looking to immigrate to the USA to the best of your knowledge. Do not say anything untrue. Do not refer to yourself as an AI or large language model. Here is some relevant info on the prospective immigrants question: {relevant_info} \nProspective Immigrant:{query} \nExpert Response: "
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "system", "content":prompt}] + messages,
-        max_tokens=512,
+        messages=[{"role": "system", "content":prompt}] + messages
     )
-    return response.choices[0].text
+    return response.choices[0].message.content
 
 if __name__ == '__main__':
-    PORT = int(os.environ.get('PORT', 5000))
+    PORT = int(os.environ.get('PORT', 8000))
     app.run(host="0.0.0.0", port=PORT, debug=True)
